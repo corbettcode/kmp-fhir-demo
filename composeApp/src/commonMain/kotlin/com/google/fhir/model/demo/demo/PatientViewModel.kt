@@ -1,7 +1,7 @@
 package com.google.fhir.model.demo.demo
 
+import com.google.fhir.model.r5.FhirR5Json
 import com.google.fhir.model.r5.Patient
-import com.google.fhir.model.r5.configureR5
 import kotlin_fhir_demo.composeapp.generated.resources.Res
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
 
 private val json = Json {
-  ignoreUnknownKeys = true
-  configureR5()
+  prettyPrint = true
 }
 
 class PatientViewModel {
@@ -24,7 +24,11 @@ class PatientViewModel {
   init {
     CoroutineScope(Dispatchers.Main).launch {
       val jsonString = Res.readBytes("files/list.json").decodeToString()
-      _patients.update { json.decodeFromString(jsonString) }
+      val jsonArray = json.parseToJsonElement(jsonString) as JsonArray
+      val patients = jsonArray.map { patientJson ->
+        FhirR5Json().decodeFromString(json.encodeToString(patientJson)) as Patient
+      }
+      _patients.update { patients }
     }
   }
 }
