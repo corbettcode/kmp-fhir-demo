@@ -3,6 +3,7 @@ package com.google.fhir.model.demo.demo
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -12,7 +13,6 @@ import com.google.fhir.model.demo.demo.ui.theme.AppTheme
 import com.google.fhir.model.r5.Address
 import com.google.fhir.model.r5.HumanName
 import kotlinx.serialization.Serializable
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Serializable object PatientListDestination
 
