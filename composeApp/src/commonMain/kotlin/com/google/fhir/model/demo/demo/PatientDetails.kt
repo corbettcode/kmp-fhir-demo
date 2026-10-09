@@ -53,7 +53,7 @@ fun PatientDetails(
           }
         },
       )
-    }
+    },
   ) { paddingValues ->
     Column(modifier = Modifier.fillMaxSize().padding(paddingValues).padding(horizontal = 16.dp)) {
       Card(
@@ -88,7 +88,7 @@ private fun LabeledInfo(label: String, data: String, modifier: Modifier = Modifi
       buildAnnotatedString {
         withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("$label: ") }
         append(data)
-      }
+      },
     )
   }
 }
@@ -99,7 +99,7 @@ private fun LabeledInfoMultiLine(label: String, data: String, modifier: Modifier
     Text(
       buildAnnotatedString {
         withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("$label: ") }
-      }
+      },
     )
     Text(data)
   }

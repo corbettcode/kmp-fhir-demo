@@ -45,7 +45,7 @@ fun PatientList(
   Scaffold(
     topBar = {
       @OptIn(ExperimentalMaterial3Api::class) TopAppBar(title = { Text("Kotlin FHIR Demo") })
-    }
+    },
   ) { paddingValues ->
     LazyColumn(
       modifier = modifier.fillMaxSize().padding(paddingValues),
